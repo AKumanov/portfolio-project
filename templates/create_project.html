@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        #form{
+            display: grid;
+            margin: 0 auto;
+            width: 50%;
+        }
+    </style>
+    <div class="form--container">
+    <form id="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {% for field in form %}
+            <div class="mb-sm-1">
+                {{ field|safe }}
+            </div>
+        {% endfor %}
+        <input class="btn btn-primary" type="submit" value="Create">
+    </form>
+    </div>
+{% endblock %}
