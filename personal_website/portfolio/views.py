@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Project, Skills
-from .forms import CreateProjectForm, EditProjectForm, DeleteProjectForm
+from .models import Project, Skills, Message
+from .forms import CreateProjectForm, EditProjectForm, DeleteProjectForm, MessageForm
+from django.contrib import messages
 
 
 # Create your views here.
@@ -8,10 +9,19 @@ def home(request):
     skills_with_no_description = Skills.objects.filter(description='')
     skills_with_description = Skills.objects.exclude(description='')
     projects = Project.objects.all()
+
+    form = MessageForm()
+
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Your message was successfully sent!')
     context = {
         'projects': projects,
         'skills_with_no_description': skills_with_no_description,
         'skills_with_description': skills_with_description,
+        'form': form,
     }
     return render(request, 'index.html', context)
 
@@ -67,3 +77,24 @@ def delete_project(request, id):
         'project': project
     }
     return render(request, 'delete_project.html', context)
+
+
+def inbox(request):
+    inbox = Message.objects.all().order_by('is_read')
+
+    unread_count = Message.objects.filter(is_read=False).count()
+    context = {
+        'inbox': inbox,
+        'unread_count': unread_count,
+    }
+    return render(request, 'inbox.html', context)
+
+
+def message(request, id):
+    message = Message.objects.get(pk=id)
+    message.is_read = True
+    message.save()
+    context = {
+        'message': message,
+    }
+    return render(request, 'message.html', context)

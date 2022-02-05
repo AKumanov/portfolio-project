@@ -3,13 +3,11 @@
 {% load static %}
 
 {% block content %}
-    <body style="background-color: #e5e5e5;">
-
 
     <section class="hero">
         <div class="hero--content">
             <div class="hero--content--intro">
-                <img id="profile_pic" src="{% static 'images/photo_2020-11-24_16-31-16.jpg' %}">
+                <img id="profile_pic" src="{% static 'images/alexander-picture.jpg' %}" alt="personal_photo">
                 <h1 class="intro--name">Alexander <br> Kumanov</h1>
             </div>
             <div class="hero--content--intro--subheadline">
@@ -83,6 +81,18 @@
         </div>
 
     </section>
-    </body>
+    <section class="section--2">
+        <div class="container">
+            <form class="contact--form" method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <input class="btn btn-primary" type="submit" value="submit">
+            </form>
+        </div>
+    </section>
 {% endblock content %}
-</html>

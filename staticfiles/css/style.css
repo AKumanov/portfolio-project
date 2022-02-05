@@ -112,6 +112,7 @@ body{
     
 }
 
+
 @media (max-width:900px) {
     .hero--content--intro {
         flex-direction: column;

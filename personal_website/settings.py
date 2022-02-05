@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'personal_website.portfolio',
     'ckeditor',
     'ckeditor_uploader',
+
 ]
 
 MIDDLEWARE = [

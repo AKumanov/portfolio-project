@@ -14,7 +14,8 @@
         {% csrf_token %}
         {{ form.media }}
         {% for field in form %}
-            <div class="mb-sm-1">
+            <div class="mb-3">
+{#                <label for="exampleInputPassword1" class="form-label">{{ field.label }}</label>#}
                 {{ field|safe }}
             </div>
         {% endfor %}
