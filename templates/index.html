@@ -30,7 +30,7 @@
                     {% endif %}
                     {% if project.thumbnail %}
                         <a href="{% url 'project details' project.id %}">
-                            <img style="height: 65%; object-fit: cover;" class="project--thumbnail" src="{{ project.thumbnail.url }}" alt="thumbnail">
+                            <img class="project--thumbnail" src="{{ project.thumbnail.url }}" alt="thumbnail">
                         </a>
                     {% endif %}
                     <div class="project--body">
