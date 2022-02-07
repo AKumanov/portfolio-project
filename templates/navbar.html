@@ -26,5 +26,9 @@
             <a class="nav-link" href="{% url 'add project' %}">
                 Add Project
             </a>
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            <div style="justify-content: right;" class="logout">
+            <a style="color: white;" class="nav-link disabled" href="#">Hello, {{ request.user.username }}</a>
+            </div>
         {% endif %}
     </section>

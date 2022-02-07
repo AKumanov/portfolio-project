@@ -36,9 +36,10 @@
                     <div class="project--body">
                         <h4 style="text-decoration: none">{{ project.title }}</h4>
                     </div>
+                    {% if request.user.is_authenticated %}
                     <a class="btn btn-warning" href="{% url 'edit project' project.id %}">Edit</a>
                     <a class="btn btn-danger" href="{% url 'delete project' project.id %}">Delete</a>
-
+                    {% endif %}
                 </div>
 
             {% endfor %}
